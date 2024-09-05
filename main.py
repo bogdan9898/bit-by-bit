@@ -1,3 +1,4 @@
+from typing import List
 import dearpygui.dearpygui as dpg
 
 from consts import PADDING
@@ -24,7 +25,7 @@ from predefined_components.constant_signal import ConstantSignal
 
 
 
-def load_generic_components() -> list[type[Component]]:
+def load_generic_components() -> List[Component]:
 	res = []
 	# todo: load components from json
 	res.extend([ConstantSignal(0), ConstantSignal(1)])

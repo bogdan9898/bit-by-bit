@@ -1,3 +1,4 @@
+from typing import List
 import dearpygui.dearpygui as dpg
 
 from consts import PADDING
@@ -9,7 +10,7 @@ class EditorWindow:
 	NODE_EDITOR_TAG = "node_editor"
 
 	def __init__(self) -> None:
-		self._links: list[tuple] = []
+		self._links: List[tuple] = []
 		with dpg.window(label="Editor", tag=self.TAG, width=dpg.get_viewport_client_width() - PADDING * 3 - dpg.get_item_width(LevelsWindow.TAG), height=dpg.get_viewport_client_height() - PADDING * 2, no_move=True, no_resize=True, no_close=True):
 			with dpg.node_editor(tag=self.NODE_EDITOR_TAG, callback=self._link_callback, delink_callback=self._delink_callback):
 				with dpg.node(label="Node 1"):
