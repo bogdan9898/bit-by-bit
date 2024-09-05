@@ -1,0 +1,6 @@
+{
+	"python.analysis.extraPaths": [
+		"/home/bogdan/.virtualenvs/nand_game-qrvi/lib/python3.12/site-packages"
+	],
+	// "python.envFile": "/home/bogdan/.virtualenvs/nand_game-qrvi"
+}
