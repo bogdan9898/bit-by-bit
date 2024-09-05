@@ -1,17 +1,21 @@
-from typing import List
+from __future__ import annotations
+from typing import TYPE_CHECKING, List
 import dearpygui.dearpygui as dpg
 
 from consts import PADDING
-from .levels_window import LevelsWindow
-from component import Component
 
-class EditorWindow:
+if TYPE_CHECKING:
+	from panels.panel_director import PanelDirector
+	from component import Component
+
+class EditorPanel:
 	TAG = "editor"
 	NODE_EDITOR_TAG = "node_editor"
 
-	def __init__(self) -> None:
+	def __init__(self, panel_director: PanelDirector) -> None:
+		self._panel_director: PanelDirector = panel_director
 		self._links: List[tuple] = []
-		with dpg.window(label="Editor", tag=self.TAG, width=dpg.get_viewport_client_width() - PADDING * 3 - dpg.get_item_width(LevelsWindow.TAG), height=dpg.get_viewport_client_height() - PADDING * 2, no_move=True, no_resize=True, no_close=True):
+		with dpg.window(label="Editor", tag=self.TAG, width=dpg.get_viewport_client_width() - PADDING * 3 - dpg.get_item_width(panel_director.level_selector_panel.TAG), height=dpg.get_viewport_client_height() - PADDING * 2, no_move=True, no_resize=True, no_close=True):
 			with dpg.node_editor(tag=self.NODE_EDITOR_TAG, callback=self._link_callback, delink_callback=self._delink_callback):
 				with dpg.node(label="Node 1"):
 					with dpg.node_attribute(label="Node A1", shape=dpg.mvNode_PinShape_TriangleFilled):
@@ -38,12 +42,6 @@ class EditorWindow:
 		# app_data -> link_id
 		print(f'{sender=} {app_data=}')
 		dpg.delete_item(app_data)
-
-	def inject_levels_w_instance(self, levels_w_instance) -> None:
-		self._levels_w_instance = levels_w_instance
-
-	def inject_components_w_instance(self, components_w_instance) -> None:
-		self._components_w_instance = components_w_instance
 
 	def create_new_node(self, component: Component) -> None:
 		component.render()

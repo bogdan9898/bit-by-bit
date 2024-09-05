@@ -28,10 +28,6 @@ class Component():
 	def name(self) -> str:
 		return self._name
 
-	@name.setter
-	def name(self, name: str) -> None:
-		self._name = name
-
 	@property
 	def next_components(self) -> List[Component]:
 		return self._next_components

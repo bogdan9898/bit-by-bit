@@ -25,10 +25,6 @@ class Pin():
 	def pin_type(self) -> PinType:
 		return self._pin_type
 	
-	@pin_type.setter
-	def pin_type(self, pin_type: PinType) -> None:
-		self._pin_type = pin_type
-
 	@property
 	def value(self) -> bool:
 		return self._value

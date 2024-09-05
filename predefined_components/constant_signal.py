@@ -1,7 +1,7 @@
 import dearpygui.dearpygui as dpg
 
 from component import Component
-from windows.editor_window import EditorWindow
+from panels.editor_panel import EditorPanel
 
 class ConstantSignal(Component):
 	def __init__(self, value: bool=False) -> None:
@@ -19,6 +19,6 @@ class ConstantSignal(Component):
 		pass
 
 	def render(self) -> None:
-		with dpg.node(label=self.name, parent=EditorWindow.NODE_EDITOR_TAG):
+		with dpg.node(label=self.name, parent=EditorPanel.NODE_EDITOR_TAG):
 			with dpg.node_attribute(attribute_type=dpg.mvNode_Attr_Output, shape=dpg.mvNode_PinShape_TriangleFilled):
 				dpg.add_text(self.value)
