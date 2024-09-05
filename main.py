@@ -6,7 +6,7 @@ from windows.editor_window import EditorWindow
 from windows.components_window import ComponentsWindow
 from pin import Pin, PinType
 from component import Component
-from constant_signal import ConstantSignal
+from predefined_components.constant_signal import ConstantSignal
 
 
 

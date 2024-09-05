@@ -1,8 +1,6 @@
-from abc import ABCMeta, abstractmethod
-
 from pin import Pin, PinType	
 
-class Component(metaclass=ABCMeta):
+class Component():
 	def __init__(self, name: str, in_pins_count: int, out_pins_counts: int) -> None:
 		self._name: str = name
 		self._inputs: list[Pin] = [Pin(pin_type=PinType.INPUT) for _ in range(in_pins_count)]
@@ -35,10 +33,8 @@ class Component(metaclass=ABCMeta):
 	# def generic_name(self) -> str:
 	# 	return self._generic_name
 
-	@abstractmethod
 	def compute(self) -> None:
 		pass
 
-	@abstractmethod
 	def render(self) -> None:
 		pass
